@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stream</title>
+<script>
+    
+    function disablebutton() {
+    // start face mesh
+        var myFacehere = document.getElementById('face_here');
+        myFacehere.style.display = "none"
+        /////////////////
+        
+
+    }
+
+    function toggleFaceMesh() {
+        var FaceMeshButton = document.getElementById('FaceMeshButton')
+        FaceMeshButton.innerHTML = "Scanning"
+        setTimeout(disablebutton, 2000);
+        };
+</script>
+
+<style>
+#navigator-container {
+    width: auto;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#navigator-text {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    color: #333;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+
+hr {
+    margin-left: 0;
+    margin-bottom: 20px;
+    border-width:0;
+    color:#1e2293;
+    background-color:#1e2293;
+    height: 5px;
+    width: 100px;
+}
+
+#logocaothang {
+    position: absolute;
+    width: 360px;
+    height: 80px;
+    left: calc((100% - 360px)/2);
+    top: 20px;
+}
+
+#video-stream {
+    width: 40%;
+    margin: 20px 30%;
+    border: 10px solid #1e2293;
+}
+
+#face_here{
+    display: none;
+    position: absolute;
+    top: 250px;
+    left: 45%;
+    width: 10%;
+    border: 5px solid rgb(120, 120, 120);
+}
+
+#FaceMeshButton{
+    display: none;
+    position: relative;
+    margin-top: 10px;
+    width: 10%;
+    left: 45%;
+    font-family: 'Lato', sans-serif;
+    background-color: white;
+    color: black;
+}
+
+#FaceMeshButton:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div>
+<!-- nagivator container-->
+    <div id = "navigator-container">
+        <div id = navigator-text>Getting started with 3D try on</div>
+        <div>
+        <hr>
+        </div>
+    </div>
+<!-- end navigator container-->
+    <p>
+        {% load static %} <img id = 'logocaothang' src="{%static "webcam/media/logo.jpg" %}" alt="Logo">
+    </p>
+</div>
+
+<img id = 'video-stream' src="{% url 'video-feed' %}" alt="">
+<p>
+    {% load static %} <img id = 'face_here' src="{%static "webcam/media/face_here.png" %}" alt="face_here">
+</p>
+<button onclick="toggleFaceMesh()" id="FaceMeshButton">Start</button>
+
+</body>
+</html>
